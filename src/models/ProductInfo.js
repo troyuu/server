@@ -18,7 +18,7 @@ const ProductInfo = sequelize.define(
       allowNull: true,
     },
     product_price: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.FLOAT,
       allowNull: true,
     },
     product_description: {

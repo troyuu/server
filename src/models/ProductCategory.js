@@ -13,10 +13,10 @@ const ProductCategory = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    category_name: {
-      type: DataTypes.BIGINT,
+     category_name: {
+      type: DataTypes.STRING,
       allowNull: true,
-    },
+},
   },
   {
     tableName: "product_category",
