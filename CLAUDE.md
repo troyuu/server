@@ -7,9 +7,18 @@ A full-featured E-Commerce REST API built with Express.js, PostgreSQL, and Seque
 ## Quick Start
 
 ```bash
-npm install
-npm run dev      # starts with nodemon on port 3000
-npm start        # production start
+# Install all dependencies
+npm run install:all
+
+# Start backend
+npm run dev:server    # starts with nodemon on port 3000
+
+# Start frontend
+npm run dev:client    # starts Vite dev server
+
+# Or run directly
+cd server && npm run dev
+cd client && npm run dev
 ```
 
 ## Environment Variables
@@ -40,38 +49,46 @@ npm start        # production start
 
 ```
 ecom-api/
-├── app.js                        # Express app entry point
-├── package.json
-├── .env                          # Environment variables
+├── package.json                  # Root package.json with convenience scripts
 ├── CLAUDE.md                     # This file
+├── .gitignore
 ├── client/                       # React frontend (Vite + Tailwind)
-└── src/
-    ├── config/
-    │   └── database.js           # Sequelize PostgreSQL connection
-    ├── controllers/
-    │   ├── authController.js     # Register, login, profile
-    │   ├── userController.js     # User CRUD
-    │   ├── infoUserController.js # User info CRUD
-    │   ├── productController.js  # Product & category CRUD
-    │   └── orderController.js    # Order CRUD
-    ├── middleware/
-    │   └── auth.js               # JWT verification middleware
-    ├── models/
-    │   ├── index.js              # Model exports
-    │   ├── User.js               # user table
-    │   ├── RegisterUser.js       # register_user table
-    │   ├── LoginUser.js          # login_user table
-    │   ├── InfoUser.js           # info_user table
-    │   ├── ProductInfo.js        # product_info table
-    │   ├── ProductCategory.js    # product_category table
-    │   └── OrderCheckout.js      # order_checkout table
-    └── routes/
-        ├── index.js              # Route aggregator, mounts at /api
-        ├── authRoutes.js         # /api/auth/*
-        ├── userRoutes.js         # /api/users/*
-        ├── infoUserRoutes.js     # /api/user-info/*
-        ├── productRoutes.js      # /api/products/* and /api/products/categories/*
-        └── orderRoutes.js        # /api/orders/*
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── index.html
+│   ├── public/
+│   └── src/
+└── server/                       # Backend (Express + PostgreSQL)
+    ├── app.js                    # Express app entry point
+    ├── package.json
+    ├── .env                      # Environment variables
+    └── src/
+        ├── config/
+        │   └── database.js       # Sequelize PostgreSQL connection
+        ├── controllers/
+        │   ├── authController.js     # Register, login, profile
+        │   ├── userController.js     # User CRUD
+        │   ├── infoUserController.js # User info CRUD
+        │   ├── productController.js  # Product & category CRUD
+        │   └── orderController.js    # Order CRUD
+        ├── middleware/
+        │   └── auth.js               # JWT verification middleware
+        ├── models/
+        │   ├── index.js              # Model exports
+        │   ├── User.js               # user table
+        │   ├── RegisterUser.js       # register_user table
+        │   ├── LoginUser.js          # login_user table
+        │   ├── InfoUser.js           # info_user table
+        │   ├── ProductInfo.js        # product_info table
+        │   ├── ProductCategory.js    # product_category table
+        │   └── OrderCheckout.js      # order_checkout table
+        └── routes/
+            ├── index.js              # Route aggregator, mounts at /api
+            ├── authRoutes.js         # /api/auth/*
+            ├── userRoutes.js         # /api/users/*
+            ├── infoUserRoutes.js     # /api/user-info/*
+            ├── productRoutes.js      # /api/products/* and /api/products/categories/*
+            └── orderRoutes.js        # /api/orders/*
 ```
 
 ## Authentication Flow
@@ -255,6 +272,18 @@ All endpoints return JSON in this format:
 ## Commands
 
 ```bash
-npm run dev      # Start development server with nodemon
-npm start        # Start production server
+# From root (convenience scripts)
+npm run dev:server     # Start backend dev server with nodemon
+npm run dev:client     # Start frontend Vite dev server
+npm run start:server   # Start backend production server
+npm run build:client   # Build frontend for production
+npm run install:all    # Install dependencies for both server and client
+
+# From server/ directly
+cd server && npm run dev    # Start backend dev server
+cd server && npm start      # Start backend production server
+
+# From client/ directly
+cd client && npm run dev    # Start frontend dev server
+cd client && npm run build  # Build frontend
 ```

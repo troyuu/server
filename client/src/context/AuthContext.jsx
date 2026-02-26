@@ -31,8 +31,8 @@ export function AuthProvider({ children }) {
     setLoading(true);
     try {
       const res = await authService.login(credentials);
-      setToken(res.data.data.token);
-      setUser(res.data.data.user);
+      setToken(res.data.token);
+      setUser(res.data.data);
       return res.data;
     } finally {
       setLoading(false);
