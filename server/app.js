@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
 const sequelize = require("./src/config/database");
@@ -15,20 +16,11 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use("/api", routes);
 
-// Health check
-app.get("/", (_req, res) => {
-  res.json({
-    status: "success",
-    message: "E-Commerce API is running",
-  });
-});
+// Serve frontend
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
-// 404 handler
-app.use((_req, res) => {
-  res.status(404).json({
-    status: "error",
-    message: "Route not found",
-  });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
 // Start server
