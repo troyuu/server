@@ -14,11 +14,19 @@ const register = async (req, res) => {
       });
     }
 
-    const existing = await RegisterUser.findOne({ where: { user_id } });
-    if (existing) {
+    const existingId = await RegisterUser.findOne({ where: { user_id } });
+    if (existingId) {
       return res.status(409).json({
         status: "error",
-        message: "User already registered",
+        message: "User ID already registered",
+      });
+    }
+
+    const existingName = await RegisterUser.findOne({ where: { user_name } });
+    if (existingName) {
+      return res.status(409).json({
+        status: "error",
+        message: "Username already taken",
       });
     }
 
