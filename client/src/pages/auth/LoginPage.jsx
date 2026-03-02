@@ -24,41 +24,71 @@ export default function LoginPage() {
 
   return (
     <>
-      <h2 className="mb-6 text-center text-2xl font-bold text-gray-900">Sign In</h2>
+      <h2 className="mb-1 text-center text-xl font-bold text-gray-800">Welcome Back</h2>
+      <p className="mb-6 text-center text-sm text-gray-500">Sign in to your account</p>
       <ErrorAlert message={error} onClose={() => setError('')} />
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">Username</label>
-          <input
-            name="user_name"
-            value={form.user_name}
-            onChange={handleChange}
-            required
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-          />
+          <label className="mb-1.5 block text-sm font-medium text-gray-700">Username</label>
+          <div className="relative">
+            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+              </svg>
+            </span>
+            <input
+              name="user_name"
+              value={form.user_name}
+              onChange={handleChange}
+              required
+              placeholder="Enter your username"
+              className="w-full rounded-lg border border-gray-300 bg-gray-50 py-2.5 pl-10 pr-3 text-sm transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+            />
+          </div>
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">Password</label>
-          <input
-            type="password"
-            name="user_password"
-            value={form.user_password}
-            onChange={handleChange}
-            required
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-          />
+          <label className="mb-1.5 block text-sm font-medium text-gray-700">Password</label>
+          <div className="relative">
+            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+              </svg>
+            </span>
+            <input
+              type="password"
+              name="user_password"
+              value={form.user_password}
+              onChange={handleChange}
+              required
+              placeholder="Enter your password"
+              className="w-full rounded-lg border border-gray-300 bg-gray-50 py-2.5 pl-10 pr-3 text-sm transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+            />
+          </div>
         </div>
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-lg bg-indigo-600 py-2 text-white hover:bg-indigo-700 disabled:opacity-50"
+          className="w-full rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:from-orange-600 hover:to-orange-700 hover:shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:active:scale-100"
         >
-          {loading ? 'Signing in...' : 'Sign In'}
+          {loading ? (
+            <span className="inline-flex items-center justify-center gap-2">
+              <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              Signing in...
+            </span>
+          ) : 'Sign In'}
         </button>
       </form>
+      <div className="mt-6 flex items-center gap-3">
+        <div className="h-px flex-1 bg-gray-200" />
+        <span className="text-xs text-gray-400">OR</span>
+        <div className="h-px flex-1 bg-gray-200" />
+      </div>
       <p className="mt-4 text-center text-sm text-gray-600">
         Don't have an account?{' '}
-        <Link to="/register" className="text-indigo-600 hover:underline">Register</Link>
+        <Link to="/register" className="font-semibold text-indigo-600 hover:text-indigo-500">Register</Link>
       </p>
     </>
   );
